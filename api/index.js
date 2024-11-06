@@ -1,7 +1,5 @@
 const express = require("express");
 const app = express();
-const path = require("path");
-const fs = require("fs");
 const { v4: uuidv4 } = require("uuid");
 
 let puppeteer;
@@ -13,6 +11,7 @@ if (process.env.AWS_LAMBDA_FUNCTION_VERSION || process.env.VERCEL) {
   puppeteer = require("puppeteer");
 }
 
+app.use(express.json()); // Use JSON for API requests
 app.use(express.urlencoded({ extended: true }));
 
 // Array to store logs temporarily
@@ -21,39 +20,31 @@ let logMessages = [];
 // Helper function to add a log message
 function addLog(message) {
   logMessages.push(message);
-  console.log(message); // Optional: log to server console for debugging
+  console.log(message); // Log to server console for debugging
 }
 
-// Serve the HTML file
 app.get("/", (req, res) => {
-  res.sendFile(path.resolve("views", "index.html"));
-});
-
-// Polling endpoint for retrieving logs incrementally
+  res.send("API RUNNING");
+})
+// Endpoint to retrieve logs
 app.get("/get-logs", (req, res) => {
   res.json({ logs: logMessages });
   logMessages = []; // Clear logs after sending to avoid duplicates
 });
 
+// Main endpoint to run the script
 app.post("/run-script", async (req, res) => {
   const { username, password, rateVal, subjects } = req.body;
 
   if (!username || !password || !rateVal) {
-    return res
-      .status(400)
-      .send("Username, password, and rating value are required.");
+    return res.status(400).json({ error: "Username, password, and rating value are required." });
   }
 
   try {
     addLog("Starting script...");
     await runPuppeteerScript(username, password, rateVal, subjects);
     addLog("Script completed successfully.");
-    res.sendFile(path.resolve("views", "success.html"));
-    (()=> {
-      new Promise(resolve => setTimeout(resolve, 3000));
-      addLog("Success");
-    })
-    res.sendFile(path.resolve("views", "success.html"));
+    res.status(200).json({ message: "Script executed successfully." });
   } catch (error) {
     addLog(`Error executing script: ${error.message}`);
     res.status(500).json({ error: "An error occurred while executing the script." });

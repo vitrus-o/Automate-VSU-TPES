@@ -116,7 +116,7 @@
 
 <body>
   <h1>TPES Automator</h1>
-  <form id="scriptForm" action="/run-script" method="POST">
+  <form id="scriptForm">
     <div class="form">
       <label for="username">Username:</label>
       <input type="text" name="username" id="username" required placeholder="Cumulus Username">
@@ -160,7 +160,7 @@
         if (!polling) return;
 
         try {
-          const response = await fetch("/get-logs");
+          const response = await fetch("https://tpesautomate.azurewebsites.net/get-logs");
           const result = await response.json();
 
           if (result.logs && result.logs.length > 0) {
@@ -182,7 +182,7 @@
       pollLogs();
 
       try {
-        const response = await fetch("/run-script", {
+        const response = await fetch("https://tpesautomate.azurewebsites.net/run-script", {
           method: "POST",
           body: new URLSearchParams(formData),
         });
