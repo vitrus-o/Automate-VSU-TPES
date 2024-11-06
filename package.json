@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"No tests specified\"",
+    "test": "jest",
     "postinstall": "npx puppeteer install"
   },
   "keywords": [],
