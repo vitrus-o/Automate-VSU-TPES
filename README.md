@@ -109,5 +109,3 @@ Contributions are welcome! Follow these steps to get started:
 Distributed under the MIT License. See `LICENSE` for more information.
 
 ---
-
-This template should help you create a clear, well-organized `README.md` for users interested in your project. Adjust the details based on any specific setup or configuration unique to Automate-VSU-TPES.
