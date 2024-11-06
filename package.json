@@ -12,7 +12,7 @@
   "author": "",
   "license": "ISC",
   "engines": {
-    "node": "20"
+    "node": "18"
   },
   "dependencies": {
     "@sparticuz/chromium": "^130.0.0",
