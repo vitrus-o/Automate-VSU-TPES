@@ -94,10 +94,10 @@ const clickButton = async (page, buttonText) => {
       continue;
     }
 
-    await page.waitForSelector(input[type="radio"][value=`${rateVal}`], {
+    await page.waitForSelector(`input[type="radio"][value="${rateVal}"]`, {
       visible: true,
     });
-    const radioButtons = await page.$$(input[type="radio"][value=`${rateVal}`]);
+    const radioButtons = await page.$$(`input[type="radio"][value="${rateVal}"]`);
     for (const radioButton of radioButtons) {
       await radioButton.click();
       console.log("Done rating");
