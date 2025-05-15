@@ -1,14 +1,17 @@
-/*
-paghimog index.js i paste ni
-open ang terminal i type: npm init -y
-nya sa terminal gihapon: npm i npm i puppeteer
-i run i type sa terminal: node index
-*/
-
 import puppeteer from "puppeteer";
 
-const credential = ["username", "password"]; //ACCOUNT SA PORTAL
-const rateVal = 3;
+const credential = ["username", "password"];
+  const subjects = [
+    "M130 - Phlo 11",
+    "G003 - CSci 13",
+    "G004 - CSci 13",
+    "G072 - CSci 15n",
+    "D189 - Entr 11",
+    "M945 - Humn 13n",
+    "W176 - PhEd 13n",
+    "C082 - CSci 103"
+  ];
+const rateVal = 3;// Change this to the desired rating value (1-5)
 
 const retryClickButtonByText = async (page, buttonText, retries = 10) => {
   for (let i = 0; i < retries; i++) {
@@ -25,11 +28,11 @@ const retryClickButtonByText = async (page, buttonText, retries = 10) => {
     }, buttonText);
 
     if (clicked) {
-      console.log('Clicked the ${buttonText} button.');
+      console.log(`Clicked the ${buttonText} button.`);
       return true;
     }
 
-    console.log('Attempt ${i + 1}: Button not found, retrying...');
+    console.log(`Attempt ${i + 1}: Button not found, retrying...`);
     await page.evaluate(
       () => new Promise((resolve) => setTimeout(resolve, 3000))
     );
@@ -78,18 +81,6 @@ const clickButton = async (page, buttonText) => {
   });
   await page.click('button[aria-label="Continue"]');
   console.log("Clicked Continue button.");
-
-  //SUBJECTS DAPAT PAREHA ANG FORMAT SA WEBSITE 
-  const subjects = [
-    "M130 - Phlo 11",
-    "G003 - CSci 13",
-    "G004 - CSci 13",
-    "G072 - CSci 15n",
-    "D189 - Entr 11",
-    "M945 - Humn 13n",
-    "W176 - PhEd 13n",
-    "C082 - CSci 103"
-  ];
 
   for (let i = 0; i < subjects.length; i++) {
     const subject = subjects[i];

@@ -94,6 +94,39 @@ or you can directly write your credentials if you're not planning to deploying i
 node script-raw.js
 ```
 
+## Using the Raw Script
+
+If you prefer using the raw script directly without the web interface, follow these steps:
+
+1. Download only the required files:
+   - `script-raw.js`
+   - `package.json`
+
+2. Install only the necessary dependencies:
+```bash
+npm install puppeteer dotenv
+```
+
+3. Configure your credentials using either method:
+
+   **Direct modification (For local use only)**
+   Open `script-raw.js` and modify these lines:
+   ```javascript
+   const username = 'your-username';
+   const password = 'your-password';
+   ```
+
+4. Run the script:
+```bash
+node script-raw.js
+```
+
+### Troubleshooting Raw Script
+
+- If you get a Chrome/Chromium error, ensure you have a compatible browser installed
+- For "Module not found" errors, verify you've installed the dependencies
+- Check your credentials if you get login failures
+
 ## Contributing
 
 Contributions are welcome! Follow these steps to get started:
