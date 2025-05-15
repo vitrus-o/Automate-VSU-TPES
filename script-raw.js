@@ -57,7 +57,7 @@ const clickButton = async (page, buttonText) => {
 };
 
 (async () => {
-  const browser = await puppeteer.launch({ headless: true });
+  const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
 
   await page.goto("https://my.vsu.edu.ph/auth/login", { waitUntil: "networkidle2" });
@@ -94,10 +94,10 @@ const clickButton = async (page, buttonText) => {
       continue;
     }
 
-    await page.waitForSelector(input[type="radio"][value="${rateVal}"], {
+    await page.waitForSelector(input[type="radio"][value=`${rateVal}`], {
       visible: true,
     });
-    const radioButtons = await page.$$(input[type="radio"][value="${rateVal}"]);
+    const radioButtons = await page.$$(input[type="radio"][value=`${rateVal}`]);
     for (const radioButton of radioButtons) {
       await radioButton.click();
       console.log("Done rating");

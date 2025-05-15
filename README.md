@@ -110,10 +110,19 @@ npm install puppeteer dotenv
 3. Configure your credentials using either method:
 
    **Direct modification (For local use only)**
-   Open `script-raw.js` and modify these lines:
+   Open `script-raw.js` and modify these lines with your login c:
    ```javascript
-   const username = 'your-username';
-   const password = 'your-password';
+   const credential = ["username", "password"];
+   const subjects = [
+    "M130 - Phlo 11",
+    "G003 - CSci 13",
+    "G004 - CSci 13",
+    "G072 - CSci 15n",
+    "D189 - Entr 11",
+    "M945 - Humn 13n",
+    "W176 - PhEd 13n",
+    "C082 - CSci 103"
+    ];
    ```
 
 4. Run the script:
