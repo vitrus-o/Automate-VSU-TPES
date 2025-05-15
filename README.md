@@ -104,13 +104,13 @@ If you prefer using the raw script directly without the web interface, follow th
 
 2. Install only the necessary dependencies:
 ```bash
-npm install puppeteer dotenv
+npm install puppeteer
 ```
 
-3. Configure your credentials using either method:
+3. Configure your credentials and course:
 
    **Direct modification (For local use only)**
-   Open `script-raw.js` and modify these lines with your login c:
+   Open `script-raw.js` and modify these lines with your login credentials and course:
    ```javascript
    const credential = ["username", "password"];
    const subjects = [
